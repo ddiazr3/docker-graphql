@@ -21,23 +21,19 @@ jobs:
     - name: Git Semantic Version              
       uses: PaulHatch/semantic-version@v4.0.3
       with: 
-        #tag_prefix: "v"
         major_pattern: "mejor:"
         minor_pattern: "feet:"
         format: "${major}.${minor}.${patch}-prerelease${increment}"
       id: version
-        #change_path: "src/my-service"
-        #namespace: my-service
-        #short_tags: true
-        #bump_each_commit: false        
+      
     - name: Docker Login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run:  |
-        echo "NUEVA VERSION: ${{ NEW_VERSION }} !!!!!!"
-        docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}        
+        echo "NUEVA VERSION: $NEW_VERSION  $DOCKER_USER !!!!!"
+        docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}        
     - name: Build Docker Image
       run: |
       #  docker build -t ddiazr2020/nest-graphql-dev:1.0.1 .
