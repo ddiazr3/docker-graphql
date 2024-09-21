@@ -32,13 +32,16 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run:  |
-        echo "NUEVA VERSION: $NEW_VERSION  $DOCKER_USER !!!!!"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-      #  docker build -t ddiazr2020/nest-graphql-dev:1.0.1 .
+        docker build -t ddiazr2020/nest-graphql-dev:$NEW_VERSION .
     - name: Push Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-      #  docker push ddiazr2020/nest-graphql-dev:1.0.1
+       docker push ddiazr2020/nest-graphql-dev:$NEW_VERSION
     #- name: Build the Docker image
     # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
