@@ -33,7 +33,7 @@ jobs:
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run:  |
         echo "NUEVA VERSION: $NEW_VERSION  $DOCKER_USER !!!!!"
-        docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}        
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker Image
       run: |
       #  docker build -t ddiazr2020/nest-graphql-dev:1.0.1 .
