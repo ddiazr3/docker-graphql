@@ -27,9 +27,9 @@ jobs:
         echo "fin del login"
     - name: Build Docker Image
       run: |
-        docker build -t ddiazr2020/teslo-shop:1.0.1 .
+        docker build -t ddiazr2020/nest-graphql-dev:1.0.1 .
     - name: Push Docker Image
       run: |
-        docker push ddiazr2020/teslo-shop:1.0.1
+        docker push ddiazr2020/nest-graphql-dev:1.0.1
     #- name: Build the Docker image
     # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
